@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Mail, Instagram, CheckCircle2 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+import { Link } from "wouter";
 
 const TIKTOK_URL = "https://www.tiktok.com/@christia.picks";
 
@@ -245,11 +246,19 @@ export default function ContactFooter() {
           </div>
 
           <div
-            className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs border-t"
+            className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs border-t"
             style={{ borderColor: "oklch(0.22 0.02 45)", color: "oklch(0.38 0.02 60)", fontFamily: "'DM Sans', sans-serif" }}
           >
-            <span>© 2026 Christia Picks. All rights reserved.</span>
-            <span>Designed with intention. Priced with purpose.</span>
+            <span>© {new Date().getFullYear()} Christia Picks. All rights reserved.</span>
+            <div className="flex items-center gap-4">
+              <Link href="/privacy">
+                <span className="cursor-pointer hover:opacity-80 transition-opacity underline" style={{ color: "oklch(0.45 0.02 70)" }}>Privacy Policy</span>
+              </Link>
+              <Link href="/terms">
+                <span className="cursor-pointer hover:opacity-80 transition-opacity underline" style={{ color: "oklch(0.45 0.02 70)" }}>Terms of Service</span>
+              </Link>
+              <span style={{ color: "oklch(0.38 0.02 60)" }}>Designed with intention. Priced with purpose.</span>
+            </div>
           </div>
         </div>
       </footer>

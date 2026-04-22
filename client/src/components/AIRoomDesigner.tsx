@@ -323,6 +323,18 @@ export default function AIRoomDesigner() {
                       onBlur={(e) => (e.target.style.borderColor = "oklch(0.88 0.015 75)")}
                     />
                   </div>
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      required
+                      className="mt-0.5 w-4 h-4 rounded flex-shrink-0 accent-[oklch(0.35_0.09_155)]"
+                    />
+                    <span className="text-xs leading-relaxed" style={{ color: "oklch(0.52 0.02 60)", fontFamily: "'DM Sans', sans-serif" }}>
+                      I agree to receive design tips, product picks, and updates from Christia Picks. Unsubscribe anytime. View our{" "}
+                      <a href="/privacy" target="_blank" className="underline" style={{ color: "oklch(0.35 0.09 155)" }}>Privacy Policy</a>.
+                    </span>
+                  </label>
+
                   <button
                     type="submit"
                     disabled={gateSubmitting}

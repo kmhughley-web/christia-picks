@@ -43,4 +43,13 @@
 - [x] Backend: update analyzeRoom tRPC to accept two images, return structured JSON (style name, 3 directions, product matches)
 - [x] Results display: style name card, 3 design direction cards, affiliate product match cards
 - [x] Zero storage: both images processed in memory only, never stored
-- [ ] Push to GitHub after checkpoint so Vercel deploys to christiapicks.com
+- [x] Push to GitHub after checkpoint so Vercel deploys to christiapicks.com
+
+## Security & Legal Compliance
+- [x] Create web-security-compliance skill (reusable across all sites)
+- [x] Privacy Policy page at /privacy (FTC, GDPR, CCPA, CASL compliant)
+- [x] Terms of Service page at /terms (COPPA age restriction, affiliate disclosure, Oklahoma governing law)
+- [x] Cookie consent banner (Accept All / Essential Only, remembers choice in localStorage)
+- [x] Privacy Policy and Terms of Service links in footer
+- [x] Email opt-in checkbox on AI Room Designer gate (GDPR/CASL explicit consent)
+- [ ] Push to GitHub after Kanika review
