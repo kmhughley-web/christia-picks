@@ -112,7 +112,7 @@ export default function ContactFooter() {
                   >
                     <option value="hello">Just saying hello</option>
                     <option value="design101">Design 101 Course</option>
-                    <option value="rsvp">Design 101 Event RSVP</option>
+                    <option value="workshop">In-Person Workshop Interest</option>
                     <option value="collab">Collaboration / Brand Partnership</option>
                     <option value="press">Press / Media Inquiry</option>
                     <option value="ai-guide">AI Home Design Guide</option>

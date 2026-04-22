@@ -7,6 +7,7 @@ import Design101 from "@/components/Design101";
 import EmailCapture from "@/components/EmailCapture";
 import TikTokSection from "@/components/TikTokSection";
 import StorySection from "@/components/StorySection";
+import InPersonWorkshops from "@/components/InPersonWorkshops";
 import ContactFooter from "@/components/ContactFooter";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <EmailCapture />
       <TikTokSection />
       <StorySection />
+      <InPersonWorkshops />
       <ContactFooter />
     </div>
   );
