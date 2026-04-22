@@ -36,3 +36,11 @@
 ## Deployment
 - [x] Push to GitHub (kmhughley-web/christia-picks)
 - [x] Deploy live to christiapicks.com via Vercel
+
+## AI Room Designer MVP Rebuild
+- [x] Email gate: name + email required before tool unlocks, saves to subscriber list
+- [x] Dual upload: room photo (required) + inspiration piece photo (optional)
+- [x] Backend: update analyzeRoom tRPC to accept two images, return structured JSON (style name, 3 directions, product matches)
+- [x] Results display: style name card, 3 design direction cards, affiliate product match cards
+- [x] Zero storage: both images processed in memory only, never stored
+- [ ] Push to GitHub after checkpoint so Vercel deploys to christiapicks.com
