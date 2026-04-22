@@ -1,28 +1,22 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Gift, ArrowRight, CheckCircle2 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
 
 export default function EmailCapture() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const subscribe = trpc.email.subscribe.useMutation({
+    onSuccess: () => setSubmitted(true),
+    onError: () => toast.error("Something went wrong. Please try again."),
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    setLoading(true);
-    // ConvertKit integration — replace FORM_ID with actual ConvertKit form ID
-    try {
-      await fetch(`https://api.convertkit.com/v3/forms/YOUR_CONVERTKIT_FORM_ID/subscribe`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ api_key: "YOUR_CONVERTKIT_API_KEY", email }),
-      });
-    } catch {
-      // Fail silently — still show success to user
-    }
-    setLoading(false);
-    setSubmitted(true);
+    subscribe.mutate({ email });
   };
 
   return (
@@ -136,11 +130,11 @@ export default function EmailCapture() {
               </div>
               <button
                 type="submit"
-                disabled={loading}
+                disabled={subscribe.isPending}
                 className="flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm tracking-wider uppercase font-medium transition-all hover:opacity-90 disabled:opacity-60 flex-shrink-0"
                 style={{ background: "oklch(0.35 0.09 155)", color: "oklch(0.975 0.008 85)", fontFamily: "'DM Sans', sans-serif" }}
               >
-                {loading ? "Sending..." : <><ArrowRight size={16} /> Get the Guide</>}
+                {subscribe.isPending ? "Sending..." : <><ArrowRight size={16} /> Get the Guide</>}
               </button>
             </motion.form>
           ) : (

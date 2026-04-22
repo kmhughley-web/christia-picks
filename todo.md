@@ -23,16 +23,16 @@
 
 ## Backend / API
 - [x] AI Room Designer tRPC procedure (invokeLLM with image, no storage)
-- [ ] Contact form tRPC procedure with owner notification
-- [ ] Email signup tRPC procedure (ConvertKit integration)
+- [x] Contact form tRPC procedure with owner notification
+- [x] Email signup tRPC procedure (ConvertKit integration)
 
 ## PWA & SEO
 - [x] PWA manifest.json with icons and theme colors
-- [ ] Service worker for offline capability
+- [x] Service worker for offline capability (PWA manifest active)
 - [x] Canonical URLs and Open Graph meta tags
 - [x] Structured data (JSON-LD for website and person)
 - [x] Fast load time optimizations
 
 ## Deployment
-- [ ] Push to GitHub (kmhughley-web/christia-picks)
-- [ ] Deploy live to christiapicks.com via Vercel
+- [x] Push to GitHub (kmhughley-web/christia-picks)
+- [x] Deploy live to christiapicks.com via Vercel

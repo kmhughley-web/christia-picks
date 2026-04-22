@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Instagram, CheckCircle2 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
 
 const TIKTOK_URL = "https://www.tiktok.com/@christia.picks";
 
@@ -8,9 +10,14 @@ export default function ContactFooter() {
   const [form, setForm] = useState({ name: "", email: "", subject: "hello", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
+  const submitContact = trpc.contact.submit.useMutation({
+    onSuccess: () => setSubmitted(true),
+    onError: () => toast.error("Something went wrong. Please try again."),
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    submitContact.mutate(form);
   };
 
   return (

@@ -1,6 +1,7 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { invokeLLM, type Message } from "./_core/llm";
+import { notifyOwner } from "./_core/notification";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
@@ -84,9 +85,41 @@ const designRouter = router({
     }),
 });
 
+const contactRouter = router({
+  submit: publicProcedure
+    .input(z.object({
+      name: z.string().min(1),
+      email: z.string().email(),
+      subject: z.string().min(1),
+      message: z.string().min(1),
+    }))
+    .mutation(async ({ input }) => {
+      await notifyOwner({
+        title: `New Contact: ${input.subject}`,
+        content: `From: ${input.name} <${input.email}>\n\n${input.message}`,
+      });
+      return { success: true };
+    }),
+});
+
+const emailRouter = router({
+  subscribe: publicProcedure
+    .input(z.object({ email: z.string().email(), firstName: z.string().optional() }))
+    .mutation(async ({ input }) => {
+      // Notify owner of new subscriber (ConvertKit webhook or manual follow-up)
+      await notifyOwner({
+        title: "New Email Subscriber — Christia Picks",
+        content: `New subscriber: ${input.firstName ? input.firstName + " " : ""}(${input.email}) signed up for the AI Home Design Starter Guide.`,
+      });
+      return { success: true };
+    }),
+});
+
 export const appRouter = router({
   system: systemRouter,
   design: designRouter,
+  contact: contactRouter,
+  email: emailRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
